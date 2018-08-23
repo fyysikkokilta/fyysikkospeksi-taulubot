@@ -255,11 +255,14 @@ def post_rankings(updater):
     for chat_id in res:
         scorers = top_scorers(chat_id[0])
         voters = top_voters(chat_id[0])
-        updater.bot.send_message(
-            chat_id[0],
-            '<b>DAILY SUMMARY</b>\n{}\n{}'.format(scorers, voters),
-            parse_mode='HTML'
-        )
+        try:
+            updater.bot.send_message(
+                chat_id[0],
+                '<b>DAILY SUMMARY</b>\n{}\n{}'.format(scorers, voters),
+                parse_mode='HTML'
+            )
+        except Exception as e:
+            print(e)
 
 
 updater = Updater('')
@@ -282,7 +285,7 @@ updater.dispatcher.add_handler(MessageHandler(Filters.all, save_last_message))
 updater.start_polling()
 # updater.idle()
 
-schedule.every().day.at("00:00").do(post_rankings, updater)
+schedule.every().day.at("21:00").do(post_rankings, updater)
 
 while True:
     schedule.run_pending()
