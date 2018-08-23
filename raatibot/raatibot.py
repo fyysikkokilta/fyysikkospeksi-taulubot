@@ -27,19 +27,20 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
-
 CHAT_ID = 0
 updater = None
 
 def send_to_raati(update):
     global updater
     u = update.chosen_inline_result
-    from_user = u.from_user
-    user_str = ''
-    if from_user:
-        user_str = '{} {}'.format(from_user.first_name, from_user.last_name)
-        if from_user.username:
-            user_str = '{} (@{})'.format(user_str, from_user.username)
+    result_id = u.result_id
+    user_str = 'Anonymous'
+    if result_id != 'anonymous':
+        from_user = u.from_user
+        if from_user:
+            user_str = '{} {}'.format(from_user.first_name, from_user.last_name)
+            if from_user.username:
+                user_str = '{} (@{})'.format(user_str, from_user.username)
     message = '<b>{}</b>\n{}'.format(user_str, u.query)
     updater.bot.send_message(
         CHAT_ID,
@@ -60,8 +61,12 @@ def inlinequery(bot, update):
     query = update.inline_query.query
     results = [
         InlineQueryResultArticle(
-            id=uuid4(),
+            id='normal',
             title="Lähetä raadille",
+            input_message_content=InputTextMessageContent('Raadille lähetetty: {}'.format(query))),
+        InlineQueryResultArticle(
+            id='anonymous',
+            title="Lähetä raadille anonyyminä",
             input_message_content=InputTextMessageContent('Raadille lähetetty: {}'.format(query))),
     ]
     update.inline_query.answer(results)
