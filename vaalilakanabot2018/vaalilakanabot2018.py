@@ -275,6 +275,11 @@ def register_channel(bot, update):
         if chat_id not in channels:
             channels.append(chat_id)
             _save_data('channels.json', channels)
+            print('New channel added {}'.format(chat_id), update.message)
+            updater.bot.send_message(
+                chat_id,
+                'Rekisteröity Vaalilakanabotin tiedotuskanavaksi!'
+            )
     except Exception as e:
         print('[ERROR]', e)
 
