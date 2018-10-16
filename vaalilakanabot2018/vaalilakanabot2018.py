@@ -46,7 +46,8 @@ def _save_data(filename, data):
 
 def _vaalilakana_to_string(vaalilakana):
     output = ''
-    for position in vaalilakana:
+    for position in ['Puheenjohtaja', 'Rahastonhoitaja', 'Sihteeri', 'Viestintävastaava',
+            'IE', 'Hupimestari', 'Yrityssuhdevastaava', 'Kv-vastaava', 'Opintovastaava', 'Fuksikapteeni']:
         output += '<b>{position}</b>\n'.format(position=position)
         for applicant in vaalilakana[position]:
             link = applicant['fiirumi']
