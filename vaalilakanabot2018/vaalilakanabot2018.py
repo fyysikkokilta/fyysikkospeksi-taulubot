@@ -49,16 +49,16 @@ def _vaalilakana_to_string(vaalilakana):
     # Hardcoded to maintain order instead using dict keys
     for position in ['Puheenjohtaja', 'Rahastonhoitaja', 'Sihteeri', 'Viestintävastaava',
             'IE', 'Hupimestari', 'Yrityssuhdevastaava', 'Kv-vastaava', 'Opintovastaava', 'Fuksikapteeni']:
-        output += '<b>[{position}]</b>\n'.format(position=position)
+        output += '<b>{position}:</b>\n'.format(position=position)
         for applicant in vaalilakana[position]:
             link = applicant['fiirumi']
             if link:
-                output += '<a href="{link}">{name}</a>\n'.format(
+                output += '- <a href="{link}">{name}</a>\n'.format(
                     name=applicant['name'],
                     link=link
                 )
             else:
-                output += '{name}\n'.format(name=applicant['name'])
+                output += '- {name}\n'.format(name=applicant['name'])
 
         output += '\n'
     return output
