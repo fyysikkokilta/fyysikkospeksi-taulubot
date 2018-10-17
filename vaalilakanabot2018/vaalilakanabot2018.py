@@ -323,4 +323,4 @@ updater.start_polling()
 
 while True:
     _parse_fiirumi_posts()
-    time.sleep(10)
+    time.sleep(60)
