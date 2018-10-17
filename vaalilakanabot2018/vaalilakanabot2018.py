@@ -11,7 +11,7 @@ TOKEN = os.environ['VAALILAKANABOT_TOKEN']
 ADMIN_CHAT_ID = 103205934
 
 BASE_URL = 'https://www.fyysikkokilta.fi/fiirumi'
-TOPIC_LIST_URL = '{0}/viewforum.php?f=5'.format(BASE_URL)
+TOPIC_LIST_URL = '{}/viewforum.php?f=5'.format(BASE_URL)
 
 channels = []
 vaalilakana = {}
@@ -46,9 +46,10 @@ def _save_data(filename, data):
 
 def _vaalilakana_to_string(vaalilakana):
     output = ''
+    # Hardcoded to maintain order instead using dict keys
     for position in ['Puheenjohtaja', 'Rahastonhoitaja', 'Sihteeri', 'Viestintävastaava',
             'IE', 'Hupimestari', 'Yrityssuhdevastaava', 'Kv-vastaava', 'Opintovastaava', 'Fuksikapteeni']:
-        output += '<b>{position}</b>\n'.format(position=position)
+        output += '<b>[{position}]</b>\n'.format(position=position)
         for applicant in vaalilakana[position]:
             link = applicant['fiirumi']
             if link:
