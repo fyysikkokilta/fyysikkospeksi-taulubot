@@ -93,6 +93,7 @@ def _parse_fiirumi_posts():
 def _announce_to_channels(message):
     for cid in channels:
         updater.bot.send_message(cid, message, parse_mode='HTML')
+        time.sleep(0.5)
 
 
 def remove_applicant(bot, update):
