@@ -4,7 +4,7 @@ from telegram.ext import Updater, MessageHandler, Filters
 
 TOKEN = os.environ['FKXXXBOT_TOKEN']
 
-FKXXX_ID = -1001331753570
+FKXXX_ID = -1001136694119
 
 
 def forward_message(msg, chat_id, debug=False):
