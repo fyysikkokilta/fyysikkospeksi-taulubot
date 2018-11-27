@@ -26,6 +26,9 @@ def message_listener(bot, update):
 
         if not is_private:
             return
+        
+        if msg.text == '/start':
+            return
 
         forward_message(msg, FKXXX_ID)
 
