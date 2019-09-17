@@ -1,5 +1,4 @@
 import os
-
 from telegram.ext import Updater, MessageHandler, Filters
 
 TOKEN = os.environ['FKXXXBOT_TOKEN']
@@ -19,24 +18,24 @@ def forward_message(msg, chat_id, debug=False):
             updater.bot.send_message(chat_id, msg.to_json())
 
 
-def message_listener(bot, update):
+def message_listener(update, context):
     try:
         msg = update.message
         is_private = msg.chat.type == 'private'
 
         if not is_private:
             return
-        
+
         if msg.text == '/start':
             return
 
         forward_message(msg, FKXXX_ID)
 
     except Exception as e:
-        return
+        return e
 
 
-updater = Updater(TOKEN)
+updater = Updater(TOKEN, use_context=True)
 
 updater.dispatcher.add_handler(MessageHandler(Filters.all, message_listener))
 
