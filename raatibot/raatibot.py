@@ -12,23 +12,23 @@ Basic inline bot example. Applies different text transformations.
 Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
-from uuid import uuid4
-
-from telegram.utils.helpers import escape_markdown
-
-from telegram import InlineQueryResultArticle, ParseMode, \
-    InputTextMessageContent, ChosenInlineResult
-from telegram.ext import Updater, InlineQueryHandler, CommandHandler, ChosenInlineResultHandler
+from telegram import InlineQueryResultArticle, InputTextMessageContent
+from telegram.ext import (
+    Updater, InlineQueryHandler, CommandHandler, ChosenInlineResultHandler
+)
 import logging
 
 # Enable logging
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO
+)
 
 logger = logging.getLogger(__name__)
 
 CHAT_ID = 0
 updater = None
+
 
 def send_to_raati(update):
     global updater
@@ -38,7 +38,8 @@ def send_to_raati(update):
     if result_id != 'anonymous':
         from_user = u.from_user
         if from_user:
-            user_str = '{} {}'.format(from_user.first_name, from_user.last_name)
+            user_str = '{} {}'.format(
+                from_user.first_name, from_user.last_name)
             if from_user.username:
                 user_str = '{} (@{})'.format(user_str, from_user.username)
     message = '<b>{}</b>\n{}'.format(user_str, u.query)
@@ -50,41 +51,45 @@ def send_to_raati(update):
 
 # Define a few command handlers. These usually take the two arguments bot and
 # update. Error handlers also receive the raised TelegramError object in error.
+
+
 def start(bot, update):
     """Send a message when the command /start is issued."""
     print(update)
     # update.message.reply_text('Hi!')
 
 
-def inlinequery(bot, update):
+def inlinequery(update, context):
     """Handle the inline query."""
     query = update.inline_query.query
     results = [
         InlineQueryResultArticle(
             id='normal',
             title="Lähetä raadille",
-            input_message_content=InputTextMessageContent('Raadille lähetetty: {}'.format(query))),
+            input_message_content=InputTextMessageContent(
+                'Raadille lähetetty: {}'.format(query))),
         InlineQueryResultArticle(
             id='anonymous',
             title="Lähetä raadille anonyyminä",
-            input_message_content=InputTextMessageContent('Raadille lähetetty: {}'.format(query))),
+            input_message_content=InputTextMessageContent(
+                'Raadille lähetetty: {}'.format(query))),
     ]
     update.inline_query.answer(results)
 
 
-def inlineresult(bot, update):
+def inlineresult(update, contex):
     send_to_raati(update)
 
 
-def error(bot, update, error):
+def error(update, context):
     """Log Errors caused by Updates."""
-    logger.warning('Update "%s" caused error "%s"', update, error)
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 
 def main():
     # Create the Updater and pass it your bot's token.
     global updater
-    updater = Updater("")
+    updater = Updater("", use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
