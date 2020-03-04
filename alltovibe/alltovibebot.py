@@ -72,8 +72,8 @@ def main():
     # Start the Bot
     updater.start_polling()
 
-    # schedule.every().day.at("10:00").do(post_reminder, updater)
-    schedule.every(5).seconds.do(post_reminder, updater)
+    schedule.every().day.at("10:00").do(post_reminder, updater)
+    # schedule.every(5).seconds.do(post_reminder, updater)
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
