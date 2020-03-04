@@ -42,11 +42,14 @@ def post_reminder(updater):
 
     try:
         for chat_id in chat_ids:
-            updater.bot.send_message(
-                chat_id,
-                'Hey! Remember to submit your daily AllToVibe!\n' +
-                'https://alltox.ayy.fi/'
-            )
+            try:
+                updater.bot.send_message(
+                    chat_id,
+                    'Hey! Remember to submit your daily AllToVibe!\n' +
+                    'https://alltox.ayy.fi/'
+                )
+            except Exception as e:
+                continue
             time.sleep(0.5)
     except Exception as e:
         print('Error at reminder :', e)
@@ -69,7 +72,8 @@ def main():
     # Start the Bot
     updater.start_polling()
 
-    schedule.every().day.at("10:00").do(post_reminder, updater)
+    # schedule.every().day.at("10:00").do(post_reminder, updater)
+    schedule.every(5).seconds.do(post_reminder, updater)
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
@@ -78,7 +82,7 @@ def main():
 
     while True:
         schedule.run_pending()
-        time.sleep(60)
+        time.sleep(1)
 
 
 if __name__ == '__main__':
