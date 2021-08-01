@@ -13,6 +13,7 @@ disable=
     fixme,
     missing-class-docstring,
     missing-function-docstring,
+    missing-final-newline,
     missing-module-docstring,
     no-else-return,
     too-few-public-methods,
@@ -25,3 +26,4 @@ disable=
     too-many-nested-blocks,
     too-many-return-statements,
     too-many-statements,
+    unnecessary-pass,
