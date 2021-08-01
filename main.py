@@ -22,9 +22,9 @@ from PIL import Image
 
 from telegram.ext import Updater, CommandHandler
 
-kehys = Image.open('./kehys.png', 'r')
-kehys_bw = Image.open('./kehys_bw.png', 'r')
-kehys_inv = Image.open('./kehys_inv.png', 'r')
+kehys = Image.open('images/kehys.png', 'r')
+kehys_bw = Image.open('images/kehys_bw.png', 'r')
+kehys_inv = Image.open('images/kehys_inv.png', 'r')
 
 # Enable logging
 logging.basicConfig(
