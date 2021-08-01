@@ -1,25 +1,10 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# This program is dedicated to the public domain under the CC0 license.
-
-"""
-Simple Bot to reply to Telegram messages.
-First, a few handler functions are defined. Then, those functions are passed to
-the Dispatcher and registered at their respective places.
-Then, the bot is started and runs until we press Ctrl-C on the command line.
-Usage:
-Basic Echobot example, repeats messages.
-Press Ctrl-C on the command line or send a signal to the process to stop the
-bot.
-"""
-
-import os
-from random import random
 import logging
-import requests
+import os
 from io import BytesIO
-from PIL import Image
+from random import random
 
+import requests
+from PIL import Image
 from telegram.ext import Updater, CommandHandler
 
 kehys = Image.open('images/kehys.png', 'r')
@@ -28,6 +13,8 @@ kehys_inv = Image.open('images/kehys_inv.png', 'r')
 
 # Enable logging
 logging.basicConfig(
+    filename='taulubot.log',
+    filemode='a',
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
@@ -61,8 +48,8 @@ def taulu(update, context):
     filename = 'images/img_{}.png'.format(user_id)
     img.save(filename, format='PNG')
 
-    f = open(filename, 'rb')
-    context.bot.send_photo(chat_id, f)
+    with open(filename, 'rb') as f:
+        context.bot.send_photo(chat_id, f)
     os.remove(filename)
 
 
@@ -76,8 +63,8 @@ def main():
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
-    TOKEN = os.environ['fspx_taulubot_token']
-    updater = Updater(TOKEN, use_context=True)
+    token = os.environ['TAULUBOT_TOKEN']
+    updater = Updater(token, use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
