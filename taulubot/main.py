@@ -7,9 +7,11 @@ import requests
 from PIL import Image
 from telegram.ext import Updater, CommandHandler
 
-kehys = Image.open('images/kehys.png', 'r')
-kehys_bw = Image.open('images/kehys_bw.png', 'r')
-kehys_inv = Image.open('images/kehys_inv.png', 'r')
+os.chdir(os.path.dirname(os.path.abspath(__file__)))  # workdir to __file__ location
+
+frame = Image.open('images/frame.png', 'r')
+frame_rare = Image.open('images/frame_rare.png', 'r')
+frame_mythicrare = Image.open('images/frame_mythicrare.png', 'r')
 
 # Enable logging
 logging.basicConfig(
@@ -18,7 +20,6 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
-
 logger = logging.getLogger(__name__)
 
 
@@ -37,15 +38,15 @@ def taulu(update, context):
     img = Image.open(BytesIO(response.content))
 
     dice = random()
-    _kehys = kehys
+    _frame = frame
     if dice >= 0.99:
-        _kehys = kehys_bw
+        _frame = frame_rare
     if dice >= 0.999:
-        _kehys = kehys_inv
+        _frame = frame_mythicrare
 
-    _kehys = _kehys.resize(img.size)
-    img.paste(_kehys, (0, 0), _kehys)
-    filename = 'images/img_{}.png'.format(user_id)
+    _frame = _frame.resize(img.size)
+    img.paste(_frame, (0, 0), _frame)
+    filename = f'images/img_{user_id}.png'
     img.save(filename, format='PNG')
 
     with open(filename, 'rb') as f:
