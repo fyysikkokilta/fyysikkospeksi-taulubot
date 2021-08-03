@@ -43,6 +43,11 @@ Instead of 3. one can alternatively open a Python shell and run
 
 ## Frames
 
+#### Normal
 ![Frame](taulubot/images/frame.png)
+
+#### Rare
 ![Frame](taulubot/images/frame_rare.png)
+
+#### Mythic rare
 ![Frame](taulubot/images/frame_mythicrare.png)
