@@ -15,7 +15,7 @@ Forked from [EinariTuukkanen/telegram-bots](https://github.com/EinariTuukkanen/t
 1. Make a `.env`-file containing `TAULUBOT_TOKEN` and the corresponding token.
 2. Run Docker with
     ```bash
-    docker run -d --env-file .env ghcr.io/fyysikkokilta/fyysikkospeksi-taulubot:main
+    docker run -d --restart unless-stopped --env-file .env ghcr.io/fyysikkokilta/fyysikkospeksi-taulubot:main
     ```
 
 _Optionally_, to override the frame images, you can mount a folder with your images to `/taulu/taulubot/images`. 
