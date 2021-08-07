@@ -17,22 +17,21 @@ Forked from [EinariTuukkanen/telegram-bots](https://github.com/EinariTuukkanen/t
     ```bash
     docker run -d --restart unless-stopped --env-file .env ghcr.io/fyysikkokilta/fyysikkospeksi-taulubot:main
     ```
-
-_Optionally_, to override the frame images, you can mount a folder with your images to `/taulu/taulubot/images`. 
-Mounting the current folder as read-only works as follows:
-```bash
-docker run -d --volume ${pwd}:/taulu/taulubot/images:ro --env-file .env ghcr.io/fyysikkokilta/fyysikkospeksi-taulubot:main
-```
+    _Optionally_, to override the frame images, you can mount a folder with your images to `/taulu/taulubot/images`. 
+    Mounting the current folder as read-only works as follows:
+    ```bash
+    docker run -d --volume ${pwd}:/taulu/taulubot/images:ro --env-file .env ghcr.io/fyysikkokilta/fyysikkospeksi-taulubot:main
+    ```
 
 ### Python
 1. Install dependencies w/
-   ```bash
-   pip install -e .
-   ```
+    ```bash
+    pip install -e .
+    ```
 2. Set the `TAULUBOT_TOKEN` environment variable
-   ```bash
-   export TAULUBOT_TOKEN=1234:abcedf
-   ```
+    ```bash
+    export TAULUBOT_TOKEN=1234:abcedf
+    ```
 3. Start the bot with `python taulubot/main.py`
 
 Instead of 3. one can alternatively open a Python shell and run
@@ -40,6 +39,20 @@ Instead of 3. one can alternatively open a Python shell and run
    from taulubot.main import main
    main()
    ```
+   
+## Development
+
+1. Clone the repo
+2. Install dependencies
+    ```bash
+    pip install -e .
+    ```
+    (optional) or the testing dependencies as well
+    ```bash
+    pip install -e .[test]
+    ```
+3. Start coding!
+
 
 ## Frames
 
