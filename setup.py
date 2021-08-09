@@ -23,11 +23,13 @@ setup(
     ],
     extras_require={
         "test": [
-            "pytest>=6.1",
-            "pytest-sugar>=0.9",
-            "pytest-cov>=2.12",
-            "pytest-xdist>=2.3",
-            "pylint>=2.9"
+            "pylint~=2.9",
+            "pytest-asyncio~=0.15",
+            "pytest-cov~=2.12",
+            "pytest-sugar~=0.9",
+            "pytest-xdist~=2.3",
+            "pytest~=6.1",
+            "telethon~=1.23",
         ],
     },
 )

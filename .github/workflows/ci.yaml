@@ -15,6 +15,11 @@ jobs:
         run: pip install -e .[test]
       - name: Run tests
         run: pytest tests -n 4 --cov --cov-report=term-missing --junitxml=test_report.xml
+        env:
+          TAULUBOT_TOKEN: ${{ secrets.TAULUBOT_TOKEN_TEST }}
+          TELEGRAM_APP_ID: ${{ secrets.TELEGRAM_APP_ID }}
+          TELEGRAM_APP_HASH: ${{ secrets.TELEGRAM_APP_HASH }}
+          TELETHON_SESSION: ${{ secrets.TELETHON_SESSION }}
       - name: Upload test results
         if: always()
         uses: EnricoMi/publish-unit-test-result-action@v1
