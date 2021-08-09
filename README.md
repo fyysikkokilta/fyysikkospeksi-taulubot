@@ -54,6 +54,16 @@ Instead of 3. one can alternatively open a Python shell and run
 3. Start coding!
 
 
+## Testing
+
+Testing requires valid _TAULUBOT_TOKEN_TEST, TELEGRAM_APP_ID, TELEGRAM_APP_HASH,_ and _TELETHON_SESSION_ environment variables. 
+Refer to [this guide on how to generate them](https://blog.1a23.com/2020/03/06/how-to-write-integration-tests-for-a-telegram-bot/).
+After these are set up, tests can be run with:
+```bash
+pytest tests
+```
+
+
 ## Frames
 
 #### Normal
