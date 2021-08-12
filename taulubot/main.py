@@ -5,7 +5,6 @@ from random import random
 
 import requests
 from PIL import Image
-from telegram import ParseMode
 from telegram.ext import Updater, CommandHandler
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))  # workdir to __file__ location
@@ -60,8 +59,7 @@ def taulu(update, context):
 def help_handle(update, context):  # pylint: disable=unused-argument
     """Send info on /help"""
     update.message.reply_text("Lisää profiilikuvallesi kehys lähettämällä /taulu\n\n" +
-        "Tietoa Fyysikkospeksistä löydät osoitteesta [fyysikkospeksi.fi](https://fyysikkospeksi.fi/)",
-        parse_mode=ParseMode.MARKDOWN
+        'Tietoa Fyysikkospeksistä löydät osoitteesta fyysikkospeksi.fi',
     )
 
 
@@ -82,7 +80,7 @@ def main():
     dp = updater.dispatcher
 
     # on different commands - answer in Telegram
-    dp.add_handler(CommandHandler("taulu", taulu))
+    dp.add_handler(CommandHandler(("taulu", "start"), taulu))
     dp.add_handler(CommandHandler("help", help_handle))
 
     # log all errors
