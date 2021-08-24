@@ -17,9 +17,10 @@ setup(
     packages=['taulubot'],
     python_requires=">=3.6.9,<3.10",
     install_requires=[
-        "requests~=2.26",
-        "python-telegram-bot~=13.7",
         "Pillow~=8.3",
+        "numpy~=1.21",
+        "python-telegram-bot~=13.7",
+        "requests~=2.26",
     ],
     extras_require={
         "test": [
