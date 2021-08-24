@@ -69,8 +69,5 @@ pytest tests
 #### Normal
 ![Frame](taulubot/images/frame.png)
 
-#### Rare
-![Frame](taulubot/images/frame_rare.png)
-
-#### Mythic rare
-![Frame](taulubot/images/frame_mythicrare.png)
+#### Above (colorised)
+![Frame](taulubot/images/frame_above.png)
