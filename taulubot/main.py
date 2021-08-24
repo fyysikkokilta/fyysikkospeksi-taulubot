@@ -1,17 +1,18 @@
 import logging
 import os
 from io import BytesIO
-from random import random
+from random import randint
 
 import requests
 from PIL import Image
 from telegram.ext import Updater, CommandHandler
 
+from taulubot.filter import colorize
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))  # workdir to __file__ location
 
 frame = Image.open('images/frame.png', 'r')
-frame_rare = Image.open('images/frame_rare.png', 'r')
-frame_mythicrare = Image.open('images/frame_mythicrare.png', 'r')
+frame_above = Image.open('images/frame_above.png', 'r')
 
 # Enable logging
 logging.basicConfig(
@@ -39,15 +40,12 @@ def taulu(update, context):
     response = requests.get(url)
     img = Image.open(BytesIO(response.content))
 
-    dice = random()
     _frame = frame
-    if dice >= 0.99:
-        _frame = frame_rare
-    if dice >= 0.999:
-        _frame = frame_mythicrare
+    _frame_above = colorize(frame_above, randint(0, 360))
 
-    _frame = _frame.resize(img.size)
-    img.paste(_frame, (0, 0), _frame)
+    for f in [_frame, _frame_above]:
+        f = f.resize(img.size)
+        img.paste(f, (0, 0), f)
     filename = f'images/img_{user_id}.png'
     img.save(filename, format='PNG')
 
