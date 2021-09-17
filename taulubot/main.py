@@ -33,7 +33,9 @@ def taulu(update, context):
 
     query = context.bot.get_user_profile_photos(user_id, limit=1)
     if query.total_count == 0:
-        return update.message.reply_text('Teillä ei ole profiilikuvaa!')
+        return update.message.reply_text('Teillä ei ole profiilikuvaa tai olet asettanut' +
+            ' sen näkyväksi vain kontakteille!'
+        )
     photo = query.photos[0][-1].get_file()
     url = photo.file_path
 
