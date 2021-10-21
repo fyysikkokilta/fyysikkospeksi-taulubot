@@ -15,6 +15,7 @@ setup(
     author_email="tuottajat@fyysikkospeksi.fi",
     url="https://github.com/fyysikkokilta/fyysikkospeksi-taulubot",
     packages=['taulubot'],
+    license='MIT',
     python_requires=">=3.6.9,<3.10",
     install_requires=[
         "Pillow~=8.3",
