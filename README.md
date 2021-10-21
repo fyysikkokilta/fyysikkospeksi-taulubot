@@ -8,6 +8,7 @@ Telegram bot for adding a [_Fyysikkospeksi_](https://fyysikkospeksi.fi/) related
 
 Forked from [EinariTuukkanen/telegram-bots](https://github.com/EinariTuukkanen/telegram-bots).
 
+Code licensed under MIT license and pictures under CC0 1.0.
 
 ## Deploying
 
@@ -17,7 +18,7 @@ Forked from [EinariTuukkanen/telegram-bots](https://github.com/EinariTuukkanen/t
     ```bash
     docker run -d --restart unless-stopped --env-file .env ghcr.io/fyysikkokilta/fyysikkospeksi-taulubot:main
     ```
-    _Optionally_, to override the frame images, you can mount a folder with your images to `/taulu/taulubot/images`. 
+    _Optionally_, to override the frame images, you can mount a folder with your images to `/taulu/taulubot/images`.
     Mounting the current folder as read-only works as follows:
     ```bash
     docker run -d --volume ${pwd}:/taulu/taulubot/images:ro --env-file .env ghcr.io/fyysikkokilta/fyysikkospeksi-taulubot:main
@@ -39,7 +40,7 @@ Instead of 3. one can alternatively open a Python shell and run
    from taulubot.main import main
    main()
    ```
-   
+
 ## Development
 
 1. Clone the repo
@@ -56,7 +57,7 @@ Instead of 3. one can alternatively open a Python shell and run
 
 ## Testing
 
-Testing requires valid _TAULUBOT_TOKEN_TEST, TELEGRAM_APP_ID, TELEGRAM_APP_HASH,_ and _TELETHON_SESSION_ environment variables. 
+Testing requires valid _TAULUBOT_TOKEN_TEST, TELEGRAM_APP_ID, TELEGRAM_APP_HASH,_ and _TELETHON_SESSION_ environment variables.
 Refer to [this guide on how to generate them](https://blog.1a23.com/2020/03/06/how-to-write-integration-tests-for-a-telegram-bot/).
 After these are set up, tests can be run with:
 ```bash
